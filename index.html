@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MovieMind - AI Cinema Concierge</title>
+<title>MovieMind | AI Cinema Concierge</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -17,42 +18,43 @@
 }
 
 body{
-    height:100vh;
+    min-height:100vh;
     overflow:hidden;
-    background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+    background:
+    radial-gradient(circle at top left,#ff0080 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#7928ca 0%,transparent 35%),
+    linear-gradient(135deg,#0f172a,#111827,#1e1b4b);
+    color:white;
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
     position:relative;
 }
 
-/* Animated Background */
+/* Animated Glow */
 
-body::before{
-    content:"";
+.glow{
     position:absolute;
-    width:600px;
-    height:600px;
-    background:rgba(255,255,255,0.08);
     border-radius:50%;
-    top:-200px;
-    left:-150px;
-    filter:blur(80px);
-    animation:float 8s infinite alternate;
+    filter:blur(90px);
+    opacity:0.35;
+    animation:float 8s infinite alternate ease-in-out;
 }
 
-body::after{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    background:rgba(255,0,150,0.12);
-    border-radius:50%;
-    bottom:-180px;
+.glow1{
+    width:350px;
+    height:350px;
+    background:#ff0080;
+    top:-120px;
+    left:-100px;
+}
+
+.glow2{
+    width:400px;
+    height:400px;
+    background:#7c3aed;
+    bottom:-150px;
     right:-120px;
-    filter:blur(100px);
-    animation:float2 10s infinite alternate;
 }
 
 @keyframes float{
@@ -64,89 +66,109 @@ body::after{
     }
 }
 
-@keyframes float2{
-    from{
-        transform:translateY(0px);
-    }
-    to{
-        transform:translateY(-40px);
-    }
-}
-
 .container{
-    position:relative;
-    z-index:10;
     width:90%;
-    max-width:1100px;
+    max-width:1200px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:40px;
+    gap:50px;
+    z-index:2;
 }
+
+/* Left Section */
 
 .left{
     flex:1;
 }
 
-.logo{
-    font-size:4rem;
-    font-weight:700;
-    background:linear-gradient(to right,#ffcc70,#ff6b81);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    margin-bottom:20px;
+.badge{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    margin-bottom:25px;
+    font-size:0.9rem;
+    border:1px solid rgba(255,255,255,0.15);
 }
 
-.tagline{
-    font-size:1.3rem;
-    line-height:1.8;
-    color:#dcdcdc;
-    max-width:600px;
+.title{
+    font-size:4.5rem;
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.gradient{
+    background:linear-gradient(to right,#ff4d6d,#ffd166);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.desc{
+    font-size:1.2rem;
+    line-height:1.9;
+    color:#d1d5db;
+    max-width:650px;
+    margin-bottom:35px;
 }
 
 .features{
-    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
 }
 
 .feature{
-    margin-bottom:18px;
-    font-size:1.1rem;
     background:rgba(255,255,255,0.08);
-    padding:15px;
-    border-radius:15px;
-    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:20px;
+    backdrop-filter:blur(12px);
     transition:0.3s ease;
 }
 
 .feature:hover{
-    transform:translateX(10px);
-    background:rgba(255,255,255,0.15);
+    transform:translateY(-8px);
 }
+
+.feature h3{
+    margin-bottom:10px;
+    font-size:1.1rem;
+}
+
+.feature p{
+    color:#d1d5db;
+    font-size:0.95rem;
+}
+
+/* Right Card */
 
 .right{
     flex:1;
     display:flex;
     justify-content:center;
-    align-items:center;
 }
 
 .card{
-    width:350px;
-    padding:35px;
-    border-radius:30px;
+    width:380px;
     background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:30px;
+    padding:40px;
     backdrop-filter:blur(20px);
-    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
     text-align:center;
-    animation:glow 3s infinite alternate;
+    animation:pulse 4s infinite alternate;
 }
 
-@keyframes glow{
+@keyframes pulse{
     from{
-        box-shadow:0 0 20px rgba(255,255,255,0.1);
+        transform:scale(1);
     }
     to{
-        box-shadow:0 0 40px rgba(255,105,180,0.5);
+        transform:scale(1.02);
     }
 }
 
@@ -156,102 +178,150 @@ body::after{
 }
 
 .card p{
-    color:#ddd;
-    margin-bottom:25px;
+    color:#d1d5db;
+    line-height:1.7;
+    margin-bottom:30px;
 }
 
 .chat-btn{
-    padding:15px 30px;
+    width:100%;
+    padding:16px;
     border:none;
     border-radius:50px;
-    background:linear-gradient(to right,#ff6b81,#ffcc70);
-    color:white;
     font-size:1rem;
     font-weight:600;
     cursor:pointer;
-    transition:0.3s;
+    color:white;
+    background:linear-gradient(to right,#ff4d6d,#ff9f1c);
+    transition:0.3s ease;
 }
 
 .chat-btn:hover{
-    transform:scale(1.08);
+    transform:scale(1.05);
 }
 
-@media(max-width:900px){
+/* Mobile */
+
+@media(max-width:950px){
 
 .container{
     flex-direction:column;
     text-align:center;
+    padding:40px 0;
 }
 
-.logo{
+.title{
     font-size:3rem;
 }
 
-.tagline{
-    margin:auto;
+.features{
+    grid-template-columns:1fr;
 }
 
 }
+
 </style>
 </head>
 
 <body>
 
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
 <div class="container">
 
     <div class="left">
-        <h1 class="logo">🎬 MovieMind</h1>
 
-        <p class="tagline">
-            Your AI Cinema Concierge powered by IBM watsonx Assistant.
-            Browse movies, explore showtimes, select seats, and instantly book tickets with an intelligent conversational experience.
+        <div class="badge">
+            🎬 AI Powered Movie Booking Experience
+        </div>
+
+        <h1 class="title">
+            Welcome to <span class="gradient">MovieMind</span>
+        </h1>
+
+        <p class="desc">
+            Your intelligent cinema assistant powered by IBM watsonx Assistant.
+            Discover trending movies, check showtimes, select seats,
+            and book tickets instantly through a smart conversational experience.
         </p>
 
         <div class="features">
-            <div class="feature">🍿 Browse Trending Movies</div>
-            <div class="feature">🎟 Instantly Book Tickets</div>
-            <div class="feature">🪑 Smart Seat Selection</div>
-            <div class="feature">⏰ Live Showtime Assistance</div>
+
+            <div class="feature">
+                <h3>🍿 Browse Movies</h3>
+                <p>Explore trending and latest movies instantly.</p>
+            </div>
+
+            <div class="feature">
+                <h3>🎟 Smart Booking</h3>
+                <p>Book tickets quickly with AI assistance.</p>
+            </div>
+
+            <div class="feature">
+                <h3>🪑 Seat Selection</h3>
+                <p>Choose your preferred seating experience.</p>
+            </div>
+
+            <div class="feature">
+                <h3>⏰ Live Showtimes</h3>
+                <p>Check available timings in real-time.</p>
+            </div>
+
         </div>
+
     </div>
 
     <div class="right">
 
         <div class="card">
-            <h2>Start Your Movie Journey</h2>
+
+            <h2>Start Booking Now</h2>
 
             <p>
-                Chat with MovieMind AI and book your next cinema experience in seconds.
+                Chat with MovieMind AI and enjoy a futuristic movie booking experience.
             </p>
 
-            <button class="chat-btn">
+            <button class="chat-btn" id="openChat">
                 Open AI Assistant
             </button>
+
         </div>
 
     </div>
 
 </div>
 
-<!-- Watson Assistant -->
+<!-- IBM Watson Assistant -->
 
 <script>
+
 window.watsonAssistantChatOptions = {
+
     integrationID: "cc934aab-581b-4d98-b10c-04ec6bd19256",
+
     region: "eu-de",
+
     serviceInstanceID: "88ee6f05-245e-4f39-8338-de81a7f829e6",
 
     onLoad: async (instance) => {
+
         await instance.render();
 
-        document.querySelector(".chat-btn")
-        .addEventListener("click", () => {
+        document
+        .getElementById("openChat")
+        .addEventListener("click", function(){
+
             instance.openWindow();
+
         });
+
     }
+
 };
 
-setTimeout(function () {
+setTimeout(function(){
+
     const t = document.createElement('script');
 
     t.src =
@@ -260,7 +330,9 @@ setTimeout(function () {
     "/WatsonAssistantChatEntry.js";
 
     document.head.appendChild(t);
+
 });
+
 </script>
 
 </body>
