@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>MovieMind - AI Cinema Concierge</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    position:relative;
+}
+
+/* Animated Background */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:rgba(255,255,255,0.08);
+    border-radius:50%;
+    top:-200px;
+    left:-150px;
+    filter:blur(80px);
+    animation:float 8s infinite alternate;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(255,0,150,0.12);
+    border-radius:50%;
+    bottom:-180px;
+    right:-120px;
+    filter:blur(100px);
+    animation:float2 10s infinite alternate;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(40px);
+    }
+}
+
+@keyframes float2{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(-40px);
+    }
+}
+
+.container{
+    position:relative;
+    z-index:10;
+    width:90%;
+    max-width:1100px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+}
+
+.left{
+    flex:1;
+}
+
+.logo{
+    font-size:4rem;
+    font-weight:700;
+    background:linear-gradient(to right,#ffcc70,#ff6b81);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:20px;
+}
+
+.tagline{
+    font-size:1.3rem;
+    line-height:1.8;
+    color:#dcdcdc;
+    max-width:600px;
+}
+
+.features{
+    margin-top:30px;
+}
+
+.feature{
+    margin-bottom:18px;
+    font-size:1.1rem;
+    background:rgba(255,255,255,0.08);
+    padding:15px;
+    border-radius:15px;
+    backdrop-filter:blur(10px);
+    transition:0.3s ease;
+}
+
+.feature:hover{
+    transform:translateX(10px);
+    background:rgba(255,255,255,0.15);
+}
+
+.right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    width:350px;
+    padding:35px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    text-align:center;
+    animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        box-shadow:0 0 20px rgba(255,255,255,0.1);
+    }
+    to{
+        box-shadow:0 0 40px rgba(255,105,180,0.5);
+    }
+}
+
+.card h2{
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#ddd;
+    margin-bottom:25px;
+}
+
+.chat-btn{
+    padding:15px 30px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(to right,#ff6b81,#ffcc70);
+    color:white;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.chat-btn:hover{
+    transform:scale(1.08);
+}
+
+@media(max-width:900px){
+
+.container{
+    flex-direction:column;
+    text-align:center;
+}
+
+.logo{
+    font-size:3rem;
+}
+
+.tagline{
+    margin:auto;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left">
+        <h1 class="logo">🎬 MovieMind</h1>
+
+        <p class="tagline">
+            Your AI Cinema Concierge powered by IBM watsonx Assistant.
+            Browse movies, explore showtimes, select seats, and instantly book tickets with an intelligent conversational experience.
+        </p>
+
+        <div class="features">
+            <div class="feature">🍿 Browse Trending Movies</div>
+            <div class="feature">🎟 Instantly Book Tickets</div>
+            <div class="feature">🪑 Smart Seat Selection</div>
+            <div class="feature">⏰ Live Showtime Assistance</div>
+        </div>
+    </div>
+
+    <div class="right">
+
+        <div class="card">
+            <h2>Start Your Movie Journey</h2>
+
+            <p>
+                Chat with MovieMind AI and book your next cinema experience in seconds.
+            </p>
+
+            <button class="chat-btn">
+                Open AI Assistant
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Watson Assistant -->
+
+<script>
+window.watsonAssistantChatOptions = {
+    integrationID: "cc934aab-581b-4d98-b10c-04ec6bd19256",
+    region: "eu-de",
+    serviceInstanceID: "88ee6f05-245e-4f39-8338-de81a7f829e6",
+
+    onLoad: async (instance) => {
+        await instance.render();
+
+        document.querySelector(".chat-btn")
+        .addEventListener("click", () => {
+            instance.openWindow();
+        });
+    }
+};
+
+setTimeout(function () {
+    const t = document.createElement('script');
+
+    t.src =
+    "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+    (window.watsonAssistantChatOptions.clientVersion || 'latest') +
+    "/WatsonAssistantChatEntry.js";
+
+    document.head.appendChild(t);
+});
+</script>
+
+</body>
+</html>
